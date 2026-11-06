@@ -9,6 +9,6 @@ Backend-приложение для учета расходов, разрабо�
 * **Gradle**
 
 ## Эндпоинты API
-* 'GET /expenses' - получить список всех расходов
-* 'POST /expenses' - добавить новый расход
-* 'DELETE /expenses/{id}' - удалить расход по ID
+* `GET /expenses` - получить список всех расходов
+* `POST /expenses` - добавить новый расход
+* `DELETE /expenses/{id}` - удалить расход по ID
