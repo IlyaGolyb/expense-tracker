@@ -1,35 +1,34 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Expense;
-import com.example.demo.repository.ExpenseRepository;
+import com.example.demo.service.ExpenseService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import java.util.List;
 
 @RestController
+@RequestMapping("/expenses")
 public class MyController {
-    private final ExpenseRepository expenseRepository;
+    private final ExpenseService expenseService;
 
-    //Внедрение репозитория через конструктор
-    public MyController(ExpenseRepository expenseRepository) {
-        this.expenseRepository = expenseRepository;
+    public MyController(ExpenseService expenseService) {
+        this.expenseService = expenseService;
     }
 
     //Получаем все расходы из БД
-    @GetMapping("/expenses")
+    @GetMapping
     public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
+        return expenseService.getAllExpenses();
     }
 
     //Сохраняем новый расход в БД
-    @PostMapping("/expenses")
+    @PostMapping
     public Expense addExpense(@RequestBody Expense newExpense) {
-        return expenseRepository.save(newExpense);
+        return expenseService.saveExpense(newExpense);
     }
 
-    @DeleteMapping("/expenses/{id}")
+    @DeleteMapping("/{id}")
     public void deleteExpence(@PathVariable Long id){
-        expenseRepository.deleteById(id);
+        expenseService.deleteExpense(id);
     }
 }
